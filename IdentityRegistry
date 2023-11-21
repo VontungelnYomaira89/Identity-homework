@@ -30,5 +30,11 @@ contract IdentityRegistry {
         emit IdentityRegistered(msg.sender, _name, _age);
     }
 
+function getIdentity(address _userAddress) public view returns (string memory, uint256, address, bool) {
+        Identity memory identity = identities[_userAddress];
+        return (identity.name, identity.age, identity.walletAddress, identity.isRegistered);
+    }
+
+
 }
 
