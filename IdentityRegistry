@@ -1,1 +1,22 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract IdentityRegistry {
+    struct Identity {
+        string name;
+        uint256 age;
+        address walletAddress;
+        bool isRegistered;
+    }
+
+    mapping(address => Identity) public identities;
+
+    event IdentityRegistered(address indexed user, string name, uint256 age);
+
+    modifier onlyRegistered() {
+        require(identities[msg.sender].isRegistered, "User is not registered");
+        _;
+    }
+
+}
 
