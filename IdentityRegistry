@@ -35,6 +35,11 @@ function getIdentity(address _userAddress) public view returns (string memory, u
         return (identity.name, identity.age, identity.walletAddress, identity.isRegistered);
     }
 
+function updateIdentity(string memory _name, uint256 _age) public onlyRegistered {
+        identities[msg.sender].name = _name;
+        identities[msg.sender].age = _age;
+    }
+
 
 }
 
