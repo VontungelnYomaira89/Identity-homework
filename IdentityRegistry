@@ -17,6 +17,18 @@ contract IdentityRegistry {
         require(identities[msg.sender].isRegistered, "User is not registered");
         _;
     }
+ function registerIdentity(string memory _name, uint256 _age) public {
+        require(!identities[msg.sender].isRegistered, "Identity is already registered");
+
+        identities[msg.sender] = Identity({
+            name: _name,
+            age: _age,
+            walletAddress: msg.sender,
+            isRegistered: true
+        });
+
+        emit IdentityRegistered(msg.sender, _name, _age);
+    }
 
 }
 
